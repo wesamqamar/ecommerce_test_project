@@ -17,6 +17,7 @@ As part of our project, you will be tasked with implementing a review system on 
     -   Create a form for submitting a review on the product details page.
     -   Display existing reviews for the product on the product details page.
     -   Ensure proper validation for review submissions.
+    -   Use `@csrf` in the review form to protect against CSRF attacks.
 
 ### 2. Refactor Blade Views
 
@@ -41,6 +42,24 @@ As part of our project, you will be tasked with implementing a review system on 
     -   Apply consistent styling across all product-related pages.
     -   Consider responsive design principles to ensure that the product details look good on various screen sizes.
 
+### 4. Add Product Status
+
+-   **Objective**: Add a status setting for each product.
+-   **Requirements**:
+    -   Add a `status` column to the `products` table via a migration.
+    -   Update the `Product` model to include the `status` attribute.
+    -   Create a route and controller method to update the product status.
+    -   Ensure the status can NEVER be set or updated through the application interface (just a tested route for it is enough).
+
+### 5. Track Product Status Update Date
+
+-   **Objective**: Track the last date when the product status was updated.
+-   **Requirements**:
+    -   Add a `status_updated_at` column to the `products` table via a migration.
+    -   Update the `Product` model to include the `status_updated_at` attribute.
+    -   Modify the controller method that updates the product status to also update the `status_updated_at` column with the current date and time.
+    -   Ensure the `status_updated_at` column is updated whenever the product status is changed.
+
 ## Submission Guidelines
 
 -   Ensure your code is well-documented and follows the project's coding standards.
@@ -52,3 +71,4 @@ As part of our project, you will be tasked with implementing a review system on 
 
 -   Make sure to test your implementation thoroughly.
 -   If you encounter any challenges or have questions, feel free to reach out for clarification.
+-   Try to showcase your knowledge and skills as much as possible in all tasks above.
