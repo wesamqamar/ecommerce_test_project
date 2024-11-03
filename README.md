@@ -32,12 +32,12 @@ As part of our project, you will be tasked with implementing a review system on 
     -   Create a separate Blade file for the header, which could include a search/filter component for products (e.g., `partials/header.blade.php`).
         -   This should be included in the master layout.
 
-### 3. Style Short Product Details
+### 3. Style Product Details
 
--   **Objective**: Enhance the visual presentation of the short product details.
+-   **Objective**: Enhance the visual presentation of the product details.
 -   **Requirements**:
     -   Review the existing styles applied to the product details and improve them using CSS or a CSS framework (e.g., Bootstrap, Tailwind CSS).
-    -   Ensure the short product details are visually appealing and easy to read.
+    -   Ensure the product details are visually appealing and easy to read.
     -   Apply consistent styling across all product-related pages.
     -   Consider responsive design principles to ensure that the product details look good on various screen sizes.
 
