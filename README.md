@@ -52,5 +52,3 @@ As part of our project, you will be tasked with implementing a review system on 
 
 -   Make sure to test your implementation thoroughly.
 -   If you encounter any challenges or have questions, feel free to reach out for clarification.
-
-We look forward to your contributions and creative solutions to improve our product details page!
