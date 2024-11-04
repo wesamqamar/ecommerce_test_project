@@ -47,8 +47,7 @@ As part of our project, you will be tasked with implementing a review system on 
 -   **Objective**: Add a status setting for each product.
 -   **Requirements**:
     -   Add a `status` column to the `products` table via a migration.
-    -   Update the `Product` model to include the `status` attribute.
-    -   Create a route and controller method to update the product status.
+    -   Update the `ProductController` to handle the product status update.
     -   Ensure the status can NEVER be set or updated through the application interface (just a tested route for it is enough).
 
 ### 5. Track Product Status Update Date
