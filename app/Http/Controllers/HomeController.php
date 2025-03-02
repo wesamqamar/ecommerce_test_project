@@ -8,7 +8,8 @@ use Illuminate\Http\Request;
 class HomeController extends Controller
 {   public function index()
     {
-        $products = Product::paginate(10); // 10 منتجات لكل صفحة
+        $products = Product::with('category')
+        ->paginate(10);
         return view('home', compact('products'));
     }
     public function show(Product $product)

@@ -17,9 +17,14 @@ class Product extends Model
     protected $guarded = ['status'];
 
     public function scopeFilter($query, $term)
-{
+    {
     return $query->where('name', 'LIKE', '%' . $term . '%');
-}
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
     public function category()
     {
         return $this->belongsTo(Category::class);

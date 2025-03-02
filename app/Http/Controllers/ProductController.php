@@ -14,10 +14,11 @@ class ProductController extends Controller
     public function index(Request $request)
     {
         $products = Product::query()
+            ->with('category')
             ->filter($request->search)
             ->paginate(10);
 
-        return view('   products.index', compact('products'));
+        return view('products.index', compact('products'));
     }
     public function create()
     {
