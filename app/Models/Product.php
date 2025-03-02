@@ -7,25 +7,26 @@ use Illuminate\Database\Eloquent\Model;
 
 class Product extends Model
 {
-    use HasFactory; // Use the HasFactory trait for factory support
+    use HasFactory;
 
-    // Define the table associated with the model if it's not the plural form of the model name
-    protected $table = "products"; // Optional, only if your table name is not 'products'
+    use HasFactory;
 
-    // Specify the fillable attributes
-    protected $fillable = ["name", "description", "price", "stock"];
+    protected $table = "products";
 
-    // Define any relationships, for example, if a product belongs to a category
+    protected $fillable = ["name", "description", "price", "stock","category_id" ];
+    protected $guarded = ['status'];
+
     public function category()
     {
         return $this->belongsTo(Category::class);
     }
-
-    // If a product has many order items
-    public function orderItems()
+    public function reviews()
     {
-        return $this->hasMany(OrderItem::class);
+        return $this->hasMany(Review::class);
     }
 
-    // You may include other methods and scopes as needed
+    public function getAverageRatingAttribute()
+{
+    return $this->reviews()->avg('rating') ?? 0;
+}
 }
