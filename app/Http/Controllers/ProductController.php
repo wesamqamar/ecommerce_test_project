@@ -11,13 +11,14 @@ use Intervention\Image\Facades\Image;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
+        $products = Product::query()
+            ->filter($request->search)
+            ->paginate(10);
 
-        return view('products.index' , compact('products'));
+        return view('   products.index', compact('products'));
     }
-
     public function create()
     {
         $categories = Category::all();
@@ -30,19 +31,13 @@ class ProductController extends Controller
     public function store(ProductRequest $request)
     {
         $product = new Product;
-
-        if ($request->hasFile('image')) {
-            $imagePath = $request->file('image')->store('images', 'public');
-            $product->image = 'storage/' . $imagePath;
-        }
-
+        $this->handleImageUpload($request, $product);
         $product->fill($request->validated());
         $product->save();
 
         session()->flash('success', 'Product Created Successfully');
         return redirect()->route('dashboard.products.index');
     }
-
 
     public function show(Product $product)
     {
@@ -58,15 +53,7 @@ class ProductController extends Controller
 
     public function update(ProductRequest $request, Product $product)
     {
-        if ($request->hasFile('image')) {
-            if ($product->image != 'images/product.png' && file_exists(public_path($product->image))) {
-                unlink(public_path($product->image));
-            }
-
-            $imagePath = $request->file('image')->store('images', 'public');
-            $product->image = 'storage/' . $imagePath;
-        }
-
+        $this->handleImageUpload($request, $product);
         $product->fill($request->validated());
         $product->status_updated_at = now();
         $product->save();
@@ -74,7 +61,6 @@ class ProductController extends Controller
         session()->flash('success', 'Product Updated Successfully');
         return redirect()->route('dashboard.products.index');
     }
-
 
     public function destroy(Product $product)
     {
@@ -93,5 +79,16 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Product status updated successfully.');
     }
+    private function handleImageUpload($request, $product)
+{
+    if ($request->hasFile('image')) {
+        if ($product->image && $product->image != 'images/product.png' && file_exists(public_path($product->image))) {
+            unlink(public_path($product->image));
+        }
+
+        $imagePath = $request->file('image')->store('images', 'public');
+                $product->image = 'storage/' . $imagePath;
+    }
+}
 }
 

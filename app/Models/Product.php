@@ -16,6 +16,10 @@ class Product extends Model
     protected $fillable = ["name", "description", "price", "stock","category_id" ];
     protected $guarded = ['status'];
 
+    public function scopeFilter($query, $term)
+{
+    return $query->where('name', 'LIKE', '%' . $term . '%');
+}
     public function category()
     {
         return $this->belongsTo(Category::class);

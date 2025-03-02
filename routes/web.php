@@ -5,10 +5,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Front\ProductController as FrontProductController;
+use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ReviewController;
 
-Route::get('/', [FrontProductController::class, 'index'])->name('home');
-Route::get('/show/{product}', [FrontProductController::class, 'show'])->name('front.products.show');
+Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/show/{product}', [HomeController::class, 'show'])->name('front.products.show');
 
 Auth::routes();
 
